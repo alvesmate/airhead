@@ -1,6 +1,7 @@
 ---
 import '@fontsource-variable/inter';
 import '../styles/global.css';
+import { url } from '../lib/url';
 
 interface Props {
   title: string;
@@ -20,7 +21,7 @@ const { title, description } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta name="theme-color" content="#000000" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
     <!-- Помечаем, что JS есть: только тогда прячем элементы до анимации появления -->
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>

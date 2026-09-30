@@ -1,11 +1,15 @@
+---
+import { url } from '../lib/url';
+---
+
 <section class="showreel" id="film">
   <div class="container showreel__inner">
     <h2 class="h-section" data-fade>Фильм, снятый<br />в полном вакууме.</h2>
     <!-- Видео запускается, когда попадает в экран (см. animations.js) -->
     <video
       class="showreel__frame"
-      src="/video/showreel.mp4"
-      poster="/video/showreel-poster.jpg"
+      src={url('/video/showreel.mp4')}
+      poster={url('/video/showreel-poster.jpg')}
       muted
       loop
       playsinline

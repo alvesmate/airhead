@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { url } from '../lib/url';
 
 import figmaDesktop from '../assets/case/figma-desktop.webp';
 import figmaMobile from '../assets/case/figma-mobile.webp';
@@ -53,7 +54,7 @@ const stack = ['Claude Code', 'Figma + MCP', 'Krea', 'Gemini', 'Astro', 'GSAP', 
   title="Как сделан AirHead — кейс"
   description="Как графический дизайнер за один день и 0 ₽ собрал промо-лендинг вымышленного шлема: бриф, AI-визуал, Figma, Astro и GSAP."
 >
-  <Nav base="/" />
+  <Nav base={url('/')} />
   <main class="case">
     <header class="case-hero container">
       <p class="eyebrow" data-hero>Кейс</p>
@@ -191,7 +192,7 @@ const stack = ['Claude Code', 'Figma + MCP', 'Krea', 'Gemini', 'Astro', 'GSAP', 
 
     <section class="outro container" data-fade>
       <h2 class="outro__title">Продукт выдуман.<br />Процесс — настоящий.</h2>
-      <a class="button" href="/">Смотреть AirHead</a>
+      <a class="button" href={url('/')}>Смотреть AirHead</a>
       <div class="outro__links">
         <a href="https://t.me/alvesmate" target="_blank" rel="noopener">Telegram</a>
         <a href="https://www.behance.net/alexveselofff" target="_blank" rel="noopener">Behance</a>

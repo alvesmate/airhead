@@ -8,7 +8,7 @@ const { base = '' } = Astro.props;
 
 <header class="nav">
   <div class="container nav__inner">
-    <a class="nav__logo" href={base ? '/' : '#top'}>AirHead</a>
+    <a class="nav__logo" href={base || '#top'}>AirHead</a>
     <nav class="nav__links" id="nav-links">
       <a href={`${base}#overview`}>Обзор</a>
       <a href={`${base}#film`}>Фильм</a>
