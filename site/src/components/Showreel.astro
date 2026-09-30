@@ -1,8 +1,18 @@
 <section class="showreel" id="film">
   <div class="container showreel__inner">
     <h2 class="h-section" data-fade>Фильм, снятый<br />в полном вакууме.</h2>
-    <!-- TODO: заменить заглушку на AI-видео -->
-    <div class="showreel__frame placeholder" data-reel>▶&nbsp;&nbsp;Шоурил · AI-видео</div>
+    <!-- Видео запускается, когда попадает в экран (см. animations.js) -->
+    <video
+      class="showreel__frame"
+      src="/video/showreel.mp4"
+      poster="/video/showreel-poster.jpg"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-label="Шоурил: шлем AirHead крупным планом и в обороте"
+      data-reel
+    ></video>
   </div>
 </section>
 
@@ -21,6 +31,9 @@
   .showreel__frame {
     width: 100%;
     aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius);
+    background: var(--placeholder);
   }
 
   @media (max-width: 834px) {

@@ -6,6 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+initShowreelVideo();
+
 if (!reduceMotion) {
   initSmoothScroll();
   initHero();
@@ -86,6 +88,20 @@ function initShowreel() {
       scrollTrigger: { trigger: '[data-reel]', start: 'top bottom', end: 'center center', scrub: true },
     },
   );
+}
+
+// Видео играет, только пока видно на экране; без автозапуска — если просили меньше движения
+function initShowreelVideo() {
+  const video = document.querySelector('video[data-reel]');
+  if (!video) return;
+  if (reduceMotion) {
+    video.controls = true;
+    return;
+  }
+  new IntersectionObserver(
+    ([entry]) => (entry.isIntersecting ? video.play().catch(() => {}) : video.pause()),
+    { threshold: 0.25 },
+  ).observe(video);
 }
 
 function initStatement() {

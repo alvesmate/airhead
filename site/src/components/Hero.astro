@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import helmetFront from '../assets/helmet-front.png';
+import helmetHero from '../assets/helmet-hero.webp';
 ---
 
 <section class="hero" id="overview">
@@ -12,10 +12,10 @@ import helmetFront from '../assets/helmet-front.png';
 
   <div class="hero__media">
     <Image
-      src={helmetFront}
-      alt="Шлем AirHead, вид спереди"
+      src={helmetHero}
+      alt="Шлем AirHead в три четверти, на визоре — интерфейс"
       class="hero__img vignette"
-      widths={[390, 780, 1200, 1376]}
+      widths={[390, 780, 1200, 1600, 2400]}
       sizes="(max-width: 834px) 100vw, 1200px"
       loading="eager"
       fetchpriority="high"

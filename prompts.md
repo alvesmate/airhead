@@ -58,3 +58,19 @@ the same helmet from the reference images, perfect side profile view, fabric-tex
 ```
 extreme close-up macro of the side ventilation module, fabric-textured white shell and polished metal neck ring of the helmet from the reference images, shallow depth of field, black background, soft pink and blue rim light, premium tech product photography, ultra detailed, no text, no logo
 ```
+
+## Этап 3. Финальные ассеты (Google Gemini)
+
+Krea упёрся в дневной лимит, поэтому финальный набор сгенерирован в Gemini: 5 изображений 2752×1536 и видео 10 с 1280×720. Шлем в них консистентный: новый дизайн с металлической боковой панелью.
+Исходники: `assets/reference/new gen/`.
+
+| Файл на сайте | Исходник | Где используется |
+|---|---|---|
+| `helmet-hero.webp` | khsa… (3/4 спереди, HUD на визоре) | Hero |
+| `helmet-side.webp` | opu8… (3/4 сбоку) | Фича «Шумоподавление» |
+| `helmet-macro.webp` | v4wd… (макро визора и панели) | Фича «Материал» |
+| `helmet-vent.webp` | y3ad… (профиль, значки потока воздуха) | Фича «Вентиляция» |
+| `helmet-back.webp` | hzsg… (3/4 сзади) | Блок «Купить» |
+| `video/showreel.mp4` | gemini_generated_video… | Шоурил |
+
+Обработка: водяной знак Gemini закрыт куском фона (на макро кадр обрезан справа), в видео убран фильтром `delogo`, звук удалён, видео пережато в H.264 (2,9 → 1,2 МБ).
