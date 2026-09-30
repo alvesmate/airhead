@@ -1,13 +1,21 @@
+---
+// На лендинге якоря локальные ('#film'), на других страницах ведут на лендинг ('/#film')
+interface Props {
+  base?: string;
+}
+const { base = '' } = Astro.props;
+---
+
 <header class="nav">
   <div class="container nav__inner">
-    <a class="nav__logo" href="#top">AirHead</a>
+    <a class="nav__logo" href={base ? '/' : '#top'}>AirHead</a>
     <nav class="nav__links" id="nav-links">
-      <a href="#overview">Обзор</a>
-      <a href="#film">Фильм</a>
-      <a href="#specs">Характеристики</a>
+      <a href={`${base}#overview`}>Обзор</a>
+      <a href={`${base}#film`}>Фильм</a>
+      <a href={`${base}#specs`}>Характеристики</a>
     </nav>
     <div class="nav__right">
-      <a class="button button--small" href="#buy">Купить</a>
+      <a class="button button--small" href={`${base}#buy`}>Купить</a>
       <button class="nav__burger" aria-label="Меню" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span>
       </button>

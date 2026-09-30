@@ -1,0 +1,507 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+import figmaDesktop from '../assets/case/figma-desktop.webp';
+import figmaMobile from '../assets/case/figma-mobile.webp';
+import krea1 from '../assets/case/krea-1.webp';
+import krea2 from '../assets/case/krea-2.webp';
+import krea3 from '../assets/case/krea-3.webp';
+import krea4 from '../assets/case/krea-4.webp';
+import finalHero from '../assets/helmet-hero.webp';
+import finalSide from '../assets/helmet-side.webp';
+import finalMacro from '../assets/helmet-macro.webp';
+import finalVent from '../assets/helmet-vent.webp';
+
+const repo = 'https://github.com/alvesmate/airhead';
+
+const facts = [
+  { value: '1 день', text: 'от идеи до публикации' },
+  { value: '0 ₽', text: 'только бесплатные тарифы' },
+  { value: '6', text: 'AI-ассетов: 5 кадров и видео' },
+  { value: '2', text: 'макета: десктоп и мобильный' },
+];
+
+const early = [
+  { src: krea1, alt: 'Ранняя генерация шлема в Krea, вариант 1' },
+  { src: krea2, alt: 'Ранняя генерация шлема в Krea, вариант 2' },
+  { src: krea3, alt: 'Ранняя генерация шлема в Krea, вариант 3' },
+  { src: krea4, alt: 'Ранняя генерация шлема в Krea, вариант 4' },
+];
+
+const final = [
+  { src: finalHero, alt: 'Финальный кадр: шлем в три четверти' },
+  { src: finalSide, alt: 'Финальный кадр: шлем сбоку' },
+  { src: finalMacro, alt: 'Финальный кадр: макро визора' },
+  { src: finalVent, alt: 'Финальный кадр: профиль со схемой воздуха' },
+];
+
+const animations = [
+  'шлем проявляется из размытия и «наезжает» на зрителя при скролле',
+  'рамка видео растёт до полного размера',
+  'слова манифеста загораются по одному',
+  'картинки фич раскрываются из окошка и едут внутри рамки',
+  'цифры характеристик набегают от нуля',
+];
+
+const stack = ['Claude Code', 'Figma + MCP', 'Krea', 'Gemini', 'Astro', 'GSAP', 'Lenis', 'Vercel'];
+---
+
+<Base
+  title="Как сделан AirHead — кейс"
+  description="Как графический дизайнер за один день и 0 ₽ собрал промо-лендинг вымышленного шлема: бриф, AI-визуал, Figma, Astro и GSAP."
+>
+  <Nav base="/" />
+  <main class="case">
+    <header class="case-hero container">
+      <p class="eyebrow" data-hero>Кейс</p>
+      <h1 class="case-hero__title" data-hero>Как сделан <span class="gradient-text">AirHead</span></h1>
+      <p class="case-hero__lead" data-hero>
+        Мой первый проект в вайбкодинге: промо-лендинг вымышленного космического шлема — от брифа до деплоя. Арт-дирекшн
+        и решения — мои, дизайн, код и тексты — в паре с Claude Code.
+      </p>
+      <div class="facts" data-hero>
+        {
+          facts.map((f) => (
+            <div class="fact">
+              <p class="fact__value gradient-text">{f.value}</p>
+              <p class="fact__text">{f.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </header>
+
+    <section class="step container">
+      <div class="step__head" data-fade>
+        <p class="step__num">01</p>
+        <h2 class="step__title">Бриф</h2>
+      </div>
+      <div class="step__body" data-fade>
+        <p>
+          Начал с идеи сайта-портфолио. Три раунда вопросов «рекурсивного брифинга» показали: работ слишком много и они
+          слишком разные — сайт вышел бы перегруженным. Решение: один проект, который сам по себе показывает связку
+          «дизайн + код».
+        </p>
+        <a class="link" href={`${repo}/blob/main/brief.md`} target="_blank" rel="noopener">Бриф на GitHub&nbsp;&nbsp;→</a>
+      </div>
+    </section>
+
+    <section class="step container">
+      <div class="step__head" data-fade>
+        <p class="step__num">02</p>
+        <h2 class="step__title">Концепция</h2>
+      </div>
+      <div class="step__body" data-fade>
+        <p>
+          Из пяти идей выбрал промо-лендинг в духе продуктовых страниц Apple. Продукт — вымышленный космический шлем: свой
+          бренд без NDA и простор для иронии.
+        </p>
+        <p>
+          Из семи вариантов названия победил <strong>AirHead</strong> — по-английски «пустоголовый». Отсюда слоган «Голова в
+          облаках. Официально.» и все шутки на странице.
+        </p>
+      </div>
+    </section>
+
+    <section class="step container">
+      <div class="step__head" data-fade>
+        <p class="step__num">03</p>
+        <h2 class="step__title">Визуал</h2>
+      </div>
+      <div class="step__body" data-fade>
+        <p>
+          Без 3D и без бюджета — весь визуал сгенерирован нейросетями. Сначала в Krea искал образ и проверял, держит ли
+          модель один и тот же шлем в разных ракурсах. Когда закончились бесплатные кредиты, финальный набор — 5 кадров и
+          видео — собрал в Gemini.
+        </p>
+        <p>Водяные знаки убраны, картинки ужаты с 6 МБ до 60–120 КБ, видео — с 2,9 до 1,2 МБ.</p>
+      </div>
+      <div class="gallery" data-fade>
+        <p class="gallery__caption">Первые генерации · Krea</p>
+        <div class="gallery__grid">
+          {early.map((i) => <Image src={i.src} alt={i.alt} widths={[300, 600]} sizes="(max-width: 834px) 50vw, 285px" />)}
+        </div>
+        <p class="gallery__caption">Финальный набор · Gemini</p>
+        <div class="gallery__grid">
+          {final.map((i) => <Image src={i.src} alt={i.alt} widths={[300, 600]} sizes="(max-width: 834px) 50vw, 285px" />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="step container">
+      <div class="step__head" data-fade>
+        <p class="step__num">04</p>
+        <h2 class="step__title">Дизайн</h2>
+      </div>
+      <div class="step__body" data-fade>
+        <p>
+          Макет собран в Figma через Figma MCP: Claude рисовал фреймы прямо на холсте, я задавал направление и утверждал.
+          Сначала десктоп 1440, потом мобильная версия 390 — рекрутеры часто открывают ссылки с телефона.
+        </p>
+      </div>
+      <div class="shots" data-shots>
+        <figure class="shot shot--desktop">
+          <div class="shot__screen" data-shot>
+            <Image src={figmaDesktop} alt="Макет лендинга AirHead в Figma, десктоп" widths={[900, 1440]} sizes="(max-width: 834px) 100vw, 860px" />
+          </div>
+          <figcaption>Десктоп · 1440</figcaption>
+        </figure>
+        <figure class="shot shot--mobile">
+          <div class="shot__screen" data-shot>
+            <Image src={figmaMobile} alt="Макет лендинга AirHead в Figma, мобильная версия" widths={[390]} sizes="280px" />
+          </div>
+          <figcaption>Мобильный · 390</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="step container">
+      <div class="step__head" data-fade>
+        <p class="step__num">05</p>
+        <h2 class="step__title">Вёрстка</h2>
+      </div>
+      <div class="step__body" data-fade>
+        <p>
+          Astro — статичный и быстрый, картинки сам переводит в WebP под размер экрана. Анимации — на GSAP ScrollTrigger,
+          плавный скролл — на Lenis:
+        </p>
+        <ul class="step__list">{animations.map((a) => <li>{a}</li>)}</ul>
+        <p>Если в системе включено «уменьшить движение», сайт работает без анимаций.</p>
+      </div>
+    </section>
+
+    <section class="step container">
+      <div class="step__head" data-fade>
+        <p class="step__num">06</p>
+        <h2 class="step__title">Запуск</h2>
+      </div>
+      <div class="step__body" data-fade>
+        <p>Код — на GitHub, хостинг — на Vercel. Каждый git push сам обновляет сайт.</p>
+        <a class="link" href={repo} target="_blank" rel="noopener">Код на GitHub&nbsp;&nbsp;→</a>
+      </div>
+    </section>
+
+    <section class="stack container" data-fade>
+      <p class="eyebrow">Инструменты</p>
+      <ul class="stack__list">{stack.map((s) => <li>{s}</li>)}</ul>
+    </section>
+
+    <section class="outro container" data-fade>
+      <h2 class="outro__title">Продукт выдуман.<br />Процесс — настоящий.</h2>
+      <a class="button" href="/">Смотреть AirHead</a>
+      <div class="outro__links">
+        <a href="https://t.me/alvesmate" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://www.behance.net/alexveselofff" target="_blank" rel="noopener">Behance</a>
+        <a href={repo} target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .case-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 120px;
+    text-align: center;
+  }
+
+  .case-hero__title {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .case-hero__lead {
+    max-width: 720px;
+    color: var(--text-2);
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.5;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: 100%;
+    margin-top: 56px;
+  }
+
+  .fact {
+    padding: 32px;
+    border-radius: var(--radius);
+    background: var(--card);
+    text-align: left;
+  }
+
+  .fact__value {
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .fact__text {
+    margin-top: 8px;
+    color: var(--text-2);
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px 80px;
+    padding-top: 160px;
+  }
+
+  .step__num {
+    color: var(--pink);
+    font-size: 17px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .step__title {
+    margin-top: 8px;
+    font-size: clamp(32px, 3.4vw, 48px);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  .step__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    max-width: 680px;
+    color: var(--text-2);
+    font-size: 19px;
+    line-height: 1.55;
+  }
+
+  .step__body strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .step__list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 20px;
+  }
+
+  .step__list li::marker {
+    color: var(--pink);
+  }
+
+  .gallery,
+  .shots {
+    grid-column: 1 / -1;
+    margin-top: 32px;
+  }
+
+  .gallery__caption {
+    margin: 24px 0 12px;
+    color: var(--text-2);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .gallery__grid :global(img) {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+
+  /* Макеты в «экранах»: содержимое прокручивается вместе со страницей (см. animations.js) */
+  .shots {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 40px;
+  }
+
+  .shot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .shot figcaption {
+    color: var(--text-2);
+    font-size: 14px;
+  }
+
+  .shot__screen {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #000;
+  }
+
+  .shot__screen :global(img) {
+    width: 100%;
+    will-change: transform;
+  }
+
+  .shot--desktop {
+    flex: 1;
+    max-width: 860px;
+  }
+
+  .shot--desktop .shot__screen {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 20px;
+  }
+
+  .shot--mobile .shot__screen {
+    width: 280px;
+    aspect-ratio: 9 / 19.5;
+    border: 8px solid #1c1c1e;
+    border-radius: 44px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shot__screen {
+      overflow-y: auto;
+    }
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 160px;
+  }
+
+  .stack__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    list-style: none;
+  }
+
+  .stack__list li {
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 980px;
+    font-size: 15px;
+  }
+
+  .outro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding-top: 200px;
+    text-align: center;
+  }
+
+  .outro__title {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .outro__links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .outro__links a {
+    color: var(--text-2);
+    font-size: 17px;
+    transition: color 0.2s;
+  }
+
+  .outro__links a:hover {
+    color: var(--text);
+  }
+
+  @media (max-width: 1100px) {
+    .step {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 834px) {
+    .case-hero {
+      padding-top: 64px;
+    }
+
+    .facts {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .fact {
+      padding: 20px;
+    }
+
+    .fact__value {
+      font-size: 32px;
+    }
+
+    .fact__text {
+      font-size: 13px;
+    }
+
+    .step {
+      padding-top: 100px;
+      gap: 16px;
+    }
+
+    .step__body {
+      font-size: 17px;
+    }
+
+    .gallery__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .gallery__grid :global(img) {
+      border-radius: 12px;
+    }
+
+    .shots {
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .shot--desktop {
+      width: 100%;
+    }
+
+    .shot--mobile .shot__screen {
+      width: 240px;
+    }
+
+    .stack,
+    .outro {
+      padding-top: 100px;
+    }
+  }
+</style>

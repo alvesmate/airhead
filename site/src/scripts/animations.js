@@ -8,15 +8,20 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
 initShowreelVideo();
 
+// Скрипт общий для лендинга и кейса: секционные эффекты запускаем, только если секция есть на странице
+const has = (selector) => document.querySelector(selector) !== null;
+
 if (!reduceMotion) {
   initSmoothScroll();
-  initHero();
+  initIntro();
   initFadeUps();
-  initShowreel();
-  initStatement();
-  initFeatures();
-  initSpecs();
-  initBuy();
+  if (has('.hero')) initHero();
+  if (has('[data-reel]')) initShowreel();
+  if (has('[data-statement]')) initStatement();
+  if (has('[data-reveal]')) initFeatures();
+  if (has('.spec')) initSpecs();
+  if (has('.buy')) initBuy();
+  if (has('[data-shot]')) initShots();
 }
 
 function initSmoothScroll() {
@@ -37,19 +42,23 @@ function initSmoothScroll() {
   });
 }
 
-function initHero() {
+function initIntro() {
   // Появление при загрузке (стартовая прозрачность задана в CSS, чтобы не было вспышки)
   gsap.fromTo(
     '[data-hero]',
     { y: 40, opacity: 0 },
     { y: 0, opacity: 1, duration: 1.1, ease: 'power3.out', stagger: 0.12 },
   );
-  gsap.fromTo(
-    '[data-hero-img]',
-    { scale: 0.88, opacity: 0, filter: 'blur(20px)' },
-    { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.6, ease: 'power3.out', delay: 0.2 },
-  );
+  if (has('[data-hero-img]')) {
+    gsap.fromTo(
+      '[data-hero-img]',
+      { scale: 0.88, opacity: 0, filter: 'blur(20px)' },
+      { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.6, ease: 'power3.out', delay: 0.2 },
+    );
+  }
+}
 
+function initHero() {
   // При скролле шлем «наезжает» на зрителя, а текст уходит вверх
   gsap.to('.hero__media', {
     scale: 1.15,
@@ -185,6 +194,24 @@ function initBuy() {
     duration: 1.4,
     ease: 'power3.out',
     scrollTrigger: { trigger: '.buy', start: 'top 75%' },
+  });
+}
+
+// Кейс: макеты внутри «экранов» прокручиваются вместе со страницей
+function initShots() {
+  gsap.utils.toArray('[data-shot]').forEach((screen) => {
+    const img = screen.querySelector('img');
+    gsap.to(img, {
+      y: () => -(img.offsetHeight - screen.clientHeight),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '[data-shots]',
+        start: 'top 75%',
+        end: 'bottom 25%',
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    });
   });
 }
 
