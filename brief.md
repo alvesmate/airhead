@@ -52,7 +52,7 @@
 | Фреймворк | Astro |
 | Анимации | GSAP + ScrollTrigger, плавный скролл Lenis |
 | 3D | Не используется |
-| Хостинг | Vercel, бесплатный тариф, адрес `*.vercel.app`, деплой из GitHub |
+| Хостинг | Vercel, бесплатный тариф, деплой из GitHub (github.com/alvesmate/airhead, Root Directory `site`). Прод: https://airhead.vercel.app |
 | Медиа | AI-изображения и AI-видео: нужно следить за весом (сжатие, lazy-load, форматы WebP/AVIF, MP4/WebM) |
 | Бюджет | $0: только бесплатные тарифы и инструменты |
 | AI-генерация | Изображения: Krea (бесплатный тариф, дневной лимит). Видео: бесплатные тарифы (Kling, Krea) |
