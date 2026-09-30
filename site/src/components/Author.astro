@@ -1,10 +1,11 @@
 ---
-// TODO: подставить реальные ссылки автора
 const links = [
-  { label: 'Резюме', href: '#' },
-  { label: 'Telegram', href: '#' },
-  { label: 'Behance', href: '#' },
+  { label: 'Telegram', href: 'https://t.me/alvesmate' },
+  { label: 'Behance', href: 'https://www.behance.net/alexveselofff' },
+  { label: 'Figma', href: 'https://www.figma.com/design/Wgls51c1qAQWYINYfTv7pL/Brand-Prizrak?node-id=317-666' },
 ];
+// TODO: когда появится страница-кейс, вести «Как это сделано» на неё
+const howItsMade = 'https://github.com/alvesmate/airhead';
 ---
 
 <section class="author">
@@ -16,8 +17,14 @@ const links = [
         <p class="author__name">Alex Veselov</p>
         <p class="author__bio">Графический дизайнер, который собирает свои идеи кодом.</p>
         <div class="author__links">
-          <a class="link" href="#">Как это сделано&nbsp;&nbsp;→</a>
-          {links.map((l) => <a class="author__link" href={l.href}>{l.label}</a>)}
+          <a class="link" href={howItsMade} target="_blank" rel="noopener">Как это сделано&nbsp;&nbsp;→</a>
+          {
+            links.map((l) => (
+              <a class="author__link" href={l.href} target="_blank" rel="noopener">
+                {l.label}
+              </a>
+            ))
+          }
         </div>
       </div>
     </div>
