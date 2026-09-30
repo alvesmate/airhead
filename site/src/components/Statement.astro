@@ -1,0 +1,46 @@
+---
+// Каждое слово в отдельном span: при скролле они «загораются» по очереди
+const dim = 'Мы вложили в него всё.'.split(' ');
+const bright = 'Кроме содержимого.'.split(' ');
+---
+
+<section class="statement">
+  <div class="container">
+    <h2 class="statement__text" data-statement>
+      {dim.map((w) => <span class="w">{w} </span>)}
+      {bright.map((w) => <span class="w w--bright">{w} </span>)}
+    </h2>
+  </div>
+</section>
+
+<style>
+  .statement {
+    padding: 240px 0 40px;
+  }
+
+  .statement__text {
+    max-width: 1040px;
+    margin-inline: auto;
+    color: var(--text-2);
+    font-size: clamp(40px, 5.6vw, 80px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+
+  .w {
+    display: inline-block;
+    white-space: pre;
+  }
+
+  .w--bright {
+    color: var(--text);
+  }
+
+  @media (max-width: 834px) {
+    .statement {
+      padding: 140px 0 20px;
+    }
+  }
+</style>

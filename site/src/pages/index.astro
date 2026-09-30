@@ -1,0 +1,59 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Showreel from '../components/Showreel.astro';
+import Statement from '../components/Statement.astro';
+import Features from '../components/Features.astro';
+import Specs from '../components/Specs.astro';
+import Buy from '../components/Buy.astro';
+import Author from '../components/Author.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'AirHead — Голова в облаках. Официально.';
+const description = 'Промо-лендинг вымышленного космического шлема AirHead. Дизайн и код — Alex Veselov.';
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Помечаем, что JS есть: только тогда прячем элементы до анимации появления -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body id="top">
+    <Nav />
+    <main>
+      <Hero />
+      <Showreel />
+      <Statement />
+      <Features />
+      <Specs />
+      <Buy />
+      <Author />
+    </main>
+    <Footer />
+
+    <script>
+      import '../scripts/animations.js';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @media (prefers-reduced-motion: no-preference) {
+    .js [data-hero],
+    .js [data-hero-img] {
+      opacity: 0;
+    }
+  }
+</style>

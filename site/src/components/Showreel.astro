@@ -1,0 +1,35 @@
+<section class="showreel" id="film">
+  <div class="container showreel__inner">
+    <h2 class="h-section" data-fade>Фильм, снятый<br />в полном вакууме.</h2>
+    <!-- TODO: заменить заглушку на AI-видео -->
+    <div class="showreel__frame placeholder" data-reel>▶&nbsp;&nbsp;Шоурил · AI-видео</div>
+  </div>
+</section>
+
+<style>
+  .showreel {
+    padding-top: 200px;
+  }
+
+  .showreel__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .showreel__frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  @media (max-width: 834px) {
+    .showreel {
+      padding-top: 120px;
+    }
+
+    .showreel__inner {
+      gap: 28px;
+    }
+  }
+</style>

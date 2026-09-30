@@ -1,0 +1,155 @@
+---
+import { Image } from 'astro:assets';
+import helmet34 from '../assets/helmet-34.png';
+
+const features = [
+  {
+    label: 'Шумоподавление',
+    title: ['Вакуум внутри.', 'Тишина снаружи.'],
+    body: 'Активное шумоподавление Vacuum™ глушит опенспейс, соседей и внутренний голос. Последнее — бесплатно.',
+    img: helmet34,
+    alt: 'Шлем AirHead в три четверти',
+  },
+  {
+    label: 'Материал',
+    title: ['Orbit Knit.', 'Мягкий снаружи.', 'Пустой внутри.'],
+    body: 'Корпус обтянут дышащей тканью космического класса. Внутри много места — для идей, если появятся.',
+    placeholder: 'Макро: ткань и кольцо', // TODO: AI-макро
+  },
+  {
+    label: 'Вентиляция',
+    title: ['Потому что думать', 'тоже жарко.'],
+    body: 'Система Breeze продувает шлем за 3 секунды. Хватит даже на мозговой штурм. Особенно на него.',
+    placeholder: 'Профиль: модуль вентиляции', // TODO: AI-профиль
+  },
+];
+---
+
+<section class="features">
+  <div class="container features__list">
+    {
+      features.map((f, i) => (
+        <article class:list={['feature', { 'feature--reverse': i % 2 === 1 }]}>
+          <div class="feature__text" data-fade>
+            <p class="eyebrow">{f.label}</p>
+            <h3 class="feature__title">
+              {f.title.map((line) => (
+                <span>{line}</span>
+              ))}
+            </h3>
+            <p class="feature__body">{f.body}</p>
+          </div>
+          <div class="feature__media" data-reveal>
+            {f.img ? (
+              <Image src={f.img} alt={f.alt} widths={[400, 800, 1280]} sizes="(max-width: 834px) 100vw, 640px" />
+            ) : (
+              <div class="placeholder feature__placeholder">{f.placeholder}</div>
+            )}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .features {
+    padding-top: 160px;
+  }
+
+  .features__list {
+    display: flex;
+    flex-direction: column;
+    gap: 200px;
+  }
+
+  .feature {
+    display: grid;
+    grid-template-columns: 480px 640px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .feature--reverse {
+    grid-template-columns: 640px 480px;
+  }
+
+  .feature--reverse .feature__text {
+    order: 2;
+  }
+
+  .feature__text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .feature__title {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(32px, 3.4vw, 48px);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  .feature__body {
+    max-width: 440px;
+    color: var(--text-2);
+    font-size: 19px;
+    line-height: 1.5;
+  }
+
+  .feature__media {
+    height: 520px;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--placeholder);
+  }
+
+  .feature__media :global(img),
+  .feature__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 1200px) {
+    .feature {
+      grid-template-columns: 1fr 1.3fr;
+      gap: 48px;
+    }
+
+    .feature--reverse {
+      grid-template-columns: 1.3fr 1fr;
+    }
+  }
+
+  @media (max-width: 834px) {
+    .features {
+      padding-top: 100px;
+    }
+
+    .features__list {
+      gap: 96px;
+    }
+
+    .feature {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .feature__media {
+      order: -1;
+      height: 280px;
+    }
+
+    .feature__text {
+      gap: 12px;
+    }
+
+    .feature__body {
+      font-size: 17px;
+    }
+  }
+</style>

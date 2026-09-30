@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets';
+import helmetGlow from '../assets/helmet-glow.png';
+---
+
+<section class="buy" id="buy">
+  <div class="buy__media">
+    <Image
+      src={helmetGlow}
+      alt="Шлем AirHead в свечении"
+      class="buy__img vignette"
+      widths={[390, 900, 1376]}
+      sizes="(max-width: 834px) 100vw, 900px"
+    />
+  </div>
+  <div class="buy__text" data-fade>
+    <h2 class="buy__title gradient-text">AirHead</h2>
+    <p class="buy__price">от 384 400 ₽</p>
+    <a class="button" href="#buy" aria-disabled="true">Купить</a>
+    <p class="buy__note">
+      Цены земные. Доставка на орбиту оплачивается отдельно.<br />
+      Кнопка декоративная — как и вакуум внутри.
+    </p>
+  </div>
+</section>
+
+<style>
+  .buy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-top: 240px;
+    text-align: center;
+  }
+
+  .buy__media {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .buy__img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .buy__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .buy__title {
+    font-size: clamp(56px, 6.7vw, 96px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .buy__price {
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 600;
+  }
+
+  .buy__note {
+    max-width: 600px;
+    padding-inline: var(--gutter);
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 834px) {
+    .buy {
+      gap: 20px;
+      padding-top: 140px;
+    }
+
+    .buy__text {
+      gap: 20px;
+    }
+
+    .buy__img {
+      aspect-ratio: 390 / 260;
+    }
+
+    .buy__note {
+      max-width: 348px;
+      font-size: 12px;
+    }
+
+    .buy__note br {
+      display: none;
+    }
+  }
+</style>

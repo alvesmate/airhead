@@ -1,0 +1,111 @@
+---
+// count/dec — для анимации счётчика; у «∞» счётчика нет
+const specs = [
+  { value: '1,2', unit: 'кг', count: 1.2, dec: 1, text: 'На Земле. На Луне — 200 г.' },
+  { value: '384 400', unit: 'км', count: 384400, text: 'Запас хода до Луны. Обратно — по подписке.' },
+  { value: '40', unit: 'ч', count: 40, text: 'Автономность. Хватит на один созвон.' },
+  { value: '0', unit: 'дБ', count: 0, text: 'Шум внутри. Мысли тоже не шумят.' },
+  { value: '−270', unit: '°C', count: -270, text: 'Рабочая температура за бортом.' },
+  { value: '∞', text: 'Вайб. Не измеряется.' },
+];
+---
+
+<section class="specs" id="specs">
+  <div class="container specs__inner">
+    <h2 class="h-section" data-fade>Характеристики.<br />Всё по-взрослому.</h2>
+    <div class="specs__grid">
+      {
+        specs.map((s) => (
+          <div class="spec">
+            <p class="spec__value gradient-text">
+              <span data-count={s.count} data-dec={s.dec ?? 0}>{s.value}</span>
+              {s.unit && ` ${s.unit}`}
+            </p>
+            <p class="spec__text">{s.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .specs {
+    padding-top: 240px;
+  }
+
+  .specs__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+  }
+
+  .specs__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+  }
+
+  .spec {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 240px;
+    padding: 40px;
+    border-radius: var(--radius);
+    background: var(--card);
+  }
+
+  .spec__value {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .spec__text {
+    color: var(--text-2);
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 1100px) {
+    .spec__value {
+      font-size: 44px;
+    }
+  }
+
+  @media (max-width: 834px) {
+    .specs {
+      padding-top: 140px;
+    }
+
+    .specs__inner {
+      gap: 32px;
+    }
+
+    .specs__grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .spec {
+      min-height: 0;
+      padding: 28px;
+      gap: 8px;
+    }
+
+    .spec__value {
+      font-size: 40px;
+    }
+
+    .spec__text {
+      font-size: 15px;
+    }
+  }
+</style>
